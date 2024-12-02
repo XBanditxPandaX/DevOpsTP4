@@ -56,5 +56,5 @@ jobs:
         with:
           node-version: 22
           cache: "npm"
-      - run: npm install netlify-cli -g
+      - run: install netlify-cli -g
       - run: netlify deploy --prod --dir target/reports/apidocs --auth ${{secrets.NETLIFY_PASSWORD}}
