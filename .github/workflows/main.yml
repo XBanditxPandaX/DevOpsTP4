@@ -1,32 +1,31 @@
 on:
-  push :
+  push:
     branches:
       - main
-      
+
 jobs:
- build:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-java@v4
         with:
           java-version: 21
           distribution: "temurin"
 
       - run: Run maven build
       - run: mvn clean package -DskipTests
- tests:
+  tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-java@v4
         with:
           java-version: 21
           distribution: "temurin"
 
-      - run: yarn install --frozen-lockfile
-      - run: yarn test
- push_to_registry:
+      - run: mvn test
+  push_to_registry:
     name: push docker image to hub
     needs: [build, tests]
     runs-on: ubuntu-latest
