@@ -13,7 +13,7 @@ jobs:
           java-version: 21
           distribution: "temurin"
 
-      - run: maven build
+      - run: run maven build
       - run: mvn clean package -DskipTests
   tests:
     runs-on: ubuntu-latest
